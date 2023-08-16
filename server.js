@@ -6,14 +6,13 @@ const uuid = require('uuid');
 const path = require('path');
 const crypto = require('crypto');
 
-
+const dbURI = process.env.MONGODB_URI;
 app.use(express.static(path.join(__dirname, 'admin-panel/build')))
 app.use(bp.urlencoded({extended: false}));
 app.use(bp.json());
 const nodemailer = require('nodemailer');
+db.connect(dbURI);
 
-
-db.connect('mongodb+srv://tareqsalame:Ilovesimba11@tarek.tskgvib.mongodb.net/stage');
 
 const usersShema = db.Schema({
     userName:String,
@@ -432,4 +431,5 @@ app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, 'admin-panel/build', 'index.html'));
   });
 
-app.listen('2000', console.log('server on 2000'))
+
+app.listen(process.env.PORT || 2000, () => console.log('Server running on port', process.env.PORT || 2000));
