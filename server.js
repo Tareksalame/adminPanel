@@ -7,7 +7,7 @@ const path = require('path');
 const crypto = require('crypto');
 
 const dbURI = process.env.MONGODB_URI;
-app.use(express.static(path.join(__dirname, 'admin-panel/build')))
+app.use(express.static(path.join(__dirname, '/admin-panel/build')))
 app.use(bp.urlencoded({extended: false}));
 app.use(bp.json());
 const nodemailer = require('nodemailer');
